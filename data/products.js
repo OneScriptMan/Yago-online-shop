@@ -656,5 +656,39 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "918773f1-cbde-49ba-8ebe-ed485ea41a3b",
+    image: "images/products/nike-vodoo.jpg",
+    name: "Air Jordan X Zion Williamson Voodoo",
+    rating: {
+      stars: 5,
+      count: 7546
+    },
+    priceCents: 14000,
+    keywords: [
+      "nike",
+      "air",
+      "jordan",
+      "vodoo",
+      "zion",
+      "sneakers"
+    ]
+  },
+  {
+    id: "2daf6644-6c84-47fc-b060-992fc80a758f",
+    image: "images/products/adidas-yellowstone.jpg",
+    name: "adidas x National Park - Yellowstone National Park",
+    rating: {
+      stars: 5,
+      count: 11231
+    },
+    priceCents: 9000,
+    keywords: [
+      "adidas",
+      "yellowstone",
+      "park",
+      "sneakers"
+    ]
   }
 ];

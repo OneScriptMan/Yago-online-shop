@@ -1,48 +1,5 @@
-/*
-const products = [
-  { //product 1
-    image: 'images/products/athletic-cotton-socks-6-pairs.jpg',
-    name: 'Black and Gray Athletic Cotton Socks - 6 Pairs',
-    rating: {
-      stars: 4.5,
-      count: 87
-    },
-    priceCents: 1090
-  },
-
-  { //product 2
-    image: 'images/products/intermediate-composite-basketball.jpg',
-    name: 'Intermediate Size Basketball',
-    rating: {
-      stars: 4,
-      count: 127
-    },
-    priceCents: 2095 
-  },
-  
-  { //product 3
-    image: 'images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg',
-    name: 'Adults Plain Cotton T-Shirt - 2 Pack',
-    rating: {
-      stars: 4.5,
-      count: 56
-    },
-    priceCents: 799
-  },
-
-  { //product 4
-    image: 'images/products/black-2-slot-toaster.jpg',
-    name: '2 Slot Toaster - Black',
-    rating: {
-      stars: 5,
-      count: 2197
-    },
-    priceCents: 1899
-  }
-];
-*/
-
-
+ //using import feature
+ import {cart as cart} from '../data/cart.js';
 
   let productsHTML = '';
 
@@ -87,7 +44,7 @@ const products = [
 
       <div class="product-spacer"></div>
 
-      <div class="added-to-cart">
+      <div class="added-to-cart js-added-to-cart-${product.id}">
         <img src="images/icons/checkmark.png">
         Added
       </div>
@@ -101,10 +58,12 @@ const products = [
     `
   });
 
+  let timerId = {};
+
   document.querySelector('.js-products-grid').innerHTML = productsHTML;
   document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
-      const productId = button.dataset.productId;
+      let productId = button.dataset.productId;
       let selectValue = eval(document.querySelector(`.js-select-${productId}`).value);
 
       let matchingItem;
@@ -132,6 +91,35 @@ const products = [
       });
 
       document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
+      document.querySelector(`.js-added-to-cart-${productId}`).style.opacity = '1';
+
+      /*      
+      let timerActive = false;
+      let timerId;
+
+      if (timerActive = false) {
+        timerActive = true;
+        timerId = setTimeout(() => {
+        document.querySelector(`.js-added-to-cart-${productId}`).style.opacity = '0';
+        }, 3000);       
+      }
+      else {
+       clearTimeout(timerId);
+       timerId = setTimeout(() => {
+       document.querySelector(`.js-added-to-cart-${productId}`).style.opacity = '0';
+       }, 3000);       
+      }
+      */
+
+      
+      clearTimeout(timerId);
+      
+      timerId = setTimeout(() => {
+        document.querySelector(`.js-added-to-cart-${productId}`).style.opacity = '0';
+        }, 3000);
+      
+
 
     });
   })
