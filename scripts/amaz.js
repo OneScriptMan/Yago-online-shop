@@ -60,7 +60,7 @@
     `
   });
 
-  let timerId = {};
+
 
   document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
@@ -78,6 +78,8 @@
     button.addEventListener('click', () => {
       let productId = button.dataset.productId;
       let selectValue = eval(document.querySelector(`.js-select-${productId}`).value);
+
+      let timerId;
 
       addToCart(productId, selectValue); 
 
