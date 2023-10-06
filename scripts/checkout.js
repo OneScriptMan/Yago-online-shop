@@ -1,4 +1,4 @@
-import {cart, removeFromCart} from '../data/cart.js';
+import {cart, removeFromCart,calculateCartQuantity} from '../data/cart.js';
 import {products} from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 
@@ -8,6 +8,8 @@ cart.forEach((cartItem) => {
   const productId = cartItem.productId;
 
   let matchingProduct;
+
+  
 
   products.forEach((product) => {
     if (productId === product.id) {
@@ -108,9 +110,18 @@ document.querySelectorAll('.js-delete-link').forEach((link) => {
 
     const container = document.querySelector(`.js-cart-item-container-${productId}`);
 
+    updateCartQuantity();
+
     container.remove();
  
     
   })// команда link.dataset.data "преобразовывает" 'data-product-id' в 'productId'
   
 });
+
+function updateCartQuantity() {
+
+  document.querySelector('.js-checkout-quantity').innerHTML = calculateCartQuantity() + ' items';
+}
+
+updateCartQuantity();
