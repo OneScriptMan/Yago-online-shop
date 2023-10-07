@@ -88,7 +88,7 @@ cart.forEach((cartItem) => {
 
         </div>
   
-        <input type="number" min="0" value="${1}" class="quantity-input js-quantity-input-${matchingProduct.id} is-editing-quantity">
+        <input type="number" min="0" value="${1}" class="quantity-input js-quantity-input js-quantity-input-${matchingProduct.id} is-editing-quantity" data-product-id = "${matchingProduct.id}">
 
         <span class="save-quantity-link js-save-quantity-link js-save-quantity-link-${matchingProduct.id}
         link-primary is-editing-quantity" data-product-id = "${matchingProduct.id}">Save</span>
@@ -179,6 +179,32 @@ document.querySelectorAll('.js-save-quantity-link').forEach((link) => {
     });//render quanity
   
     updateCartQuantity();
+  })
+})
+
+document.querySelectorAll('.js-quantity-input').forEach((link) => {
+  link.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter'){
+    let productId = link.dataset.productId;
+    document.querySelector(`.js-save-quantity-link-${productId}`).classList.add('is-editing-quantity');
+    document.querySelector(`.js-quantity-input-${productId}`).classList.add('is-editing-quantity');
+
+    let selectValue = 0;
+    selectValue = Number(document.querySelector(`.js-quantity-input-${productId}`).value);
+
+    addToCart(productId, selectValue);
+
+    cart.forEach((cartItem)=>{
+      if (cartItem.productId === productId) {
+        document.querySelector(`.js-quantity-label-${productId}`).innerHTML = cartItem.quantity;
+      }
+    });//render quanity
+  
+    updateCartQuantity();
+    }
+
+    
+
   })
 })
 
