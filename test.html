@@ -19,10 +19,16 @@
 
   </select>
 
+  <button class="but">Click</button>
+
   <script>
 
     let t = document.querySelector('.new-selector');
     console.log(t);
+
+    document.querySelector('.but').addEventListener('click', () => {
+      console.log('click');
+    });
 
   </script>
   
